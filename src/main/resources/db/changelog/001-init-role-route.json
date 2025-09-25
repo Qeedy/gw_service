@@ -107,7 +107,7 @@
               "columns" :  [
                 {  "column" :  {  "name" :  "route_id" ,  "value" :  "customer-service-routes"  }  } ,
                 {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/customers/**"  }  } ,
-                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8081"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "https://customerservice-production-ebe7.up.railway.app"  }  } ,
                 {  "column" :  {  "name" :  "service_name" ,  "value" :  "customer-service"  }  } ,
                 {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
                 {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,MAKER,CHECKER,APPROVER"  }  } ,
@@ -122,7 +122,7 @@
               "columns" :  [
                 {  "column" :  {  "name" :  "route_id" ,  "value" :  "loan-service-routes"  }  } ,
                 {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/loan/**"  }  } ,
-                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8082"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "https://loanservice-production.up.railway.app"  }  } ,
                 {  "column" :  {  "name" :  "service_name" ,  "value" :  "loan-service"  }  } ,
                 {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
                 {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,MAKER,CHECKER,APPROVER"  }  } ,
