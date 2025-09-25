@@ -1,0 +1,72 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gw-service
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+  datasource:
+    url: jdbc:postgresql://localhost:5432/projectlos?currentSchema=gateway
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: password
+    liquibase:
+      change-log: classpath:db/changelog/db.changelog-master.yaml
+      enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/projectlos
+          jwk-set-uri: http://localhost:8080/realms/projectlos/protocol/openid-connect/certs
+
+keycloak:
+  token-uri: http://localhost:8080/realms/projectlos/protocol/openid-connect/token
+  client-id: projectlos-client
+  client-secret: projectlos-secret-123
+  realm: projectlos
+  auth-server-url: http://localhost:8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    liquibase: INFO
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
+    com.projectlos.gw_service: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/projectlos?currentSchema=gateway}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://keycloak:8080/realms/projectlos}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://keycloak:8080/realms/projectlos/protocol/openid-connect/certs}
+
+keycloak:
+  token-uri: ${KEYCLOAK_TOKEN_URI:http://keycloak:8080/realms/projectlos/protocol/openid-connect/token}
+  client-id: ${KEYCLOAK_CLIENT_ID:projectlos-client}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET:projectlos-secret-123}
+  realm: ${KEYCLOAK_REALM:projectlos}
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL:http://keycloak:8080}

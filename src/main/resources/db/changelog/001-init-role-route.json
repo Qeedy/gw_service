@@ -1,0 +1,168 @@
+{
+  "databaseChangeLog" :  [
+    {
+      "changeSet" :  {
+        "id" :  "init-route-config-table" ,
+        "author" :  "admin" ,
+        "changes" :  [
+          {
+            "createTable" :  {
+              "tableName" :  "route_config" ,
+              "columns" :  [
+                {
+                  "column" :  {
+                    "name" :  "id" ,
+                    "type" :  "BIGINT" ,
+                    "autoIncrement" :  true ,
+                    "constraints" :  {
+                      "primaryKey" :  true ,
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "route_id" ,
+                    "type" :  "VARCHAR(255)" ,
+                    "constraints" :  {
+                      "unique" :  true ,
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "path_pattern" ,
+                    "type" :  "VARCHAR(255)" ,
+                    "constraints" :  {
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "uri" ,
+                    "type" :  "VARCHAR(255)" ,
+                    "constraints" :  {
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "service_name" ,
+                    "type" :  "VARCHAR(100)"
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "requires_auth" ,
+                    "type" :  "BOOLEAN" ,
+                    "defaultValueBoolean" :  true ,
+                    "constraints" :  {
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "roles" ,
+                    "type" :  "VARCHAR(500)"
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "is_active" ,
+                    "type" :  "BOOLEAN" ,
+                    "defaultValueBoolean" :  true ,
+                    "constraints" :  {
+                      "nullable" :  false
+                    }
+                  }
+                } ,
+                {
+                  "column" :  {
+                    "name" :  "priority" ,
+                    "type" :  "INTEGER" ,
+                    "defaultValueNumeric" :  0 ,
+                    "constraints" :  {
+                      "nullable" :  false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    } ,
+    {
+      "changeSet" :  {
+        "id" :  "insert-default-routes" ,
+        "author" :  "admin" ,
+        "changes" :  [
+          {
+            "insert" :  {
+              "tableName" :  "route_config" ,
+              "columns" :  [
+                {  "column" :  {  "name" :  "route_id" ,  "value" :  "customer-service-routes"  }  } ,
+                {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/customers/**"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8081"  }  } ,
+                {  "column" :  {  "name" :  "service_name" ,  "value" :  "customer-service"  }  } ,
+                {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,MAKER,CHECKER,APPROVER"  }  } ,
+                {  "column" :  {  "name" :  "is_active" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "priority" ,  "valueNumeric" :  100  }  }
+              ]
+            }
+          } ,
+          {
+            "insert" :  {
+              "tableName" :  "route_config" ,
+              "columns" :  [
+                {  "column" :  {  "name" :  "route_id" ,  "value" :  "loan-service-routes"  }  } ,
+                {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/loan/**"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8082"  }  } ,
+                {  "column" :  {  "name" :  "service_name" ,  "value" :  "loan-service"  }  } ,
+                {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,MAKER,CHECKER,APPROVER"  }  } ,
+                {  "column" :  {  "name" :  "is_active" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "priority" ,  "valueNumeric" :  90  }  }
+              ]
+            }
+          } ,
+          {
+            "insert" :  {
+              "tableName" :  "route_config" ,
+              "columns" :  [
+                {  "column" :  {  "name" :  "route_id" ,  "value" :  "document-service-routes"  }  } ,
+                {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/documents/**"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8083"  }  } ,
+                {  "column" :  {  "name" :  "service_name" ,  "value" :  "document-service"  }  } ,
+                {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,MAKER,CHECKER,APPROVER"  }  } ,
+                {  "column" :  {  "name" :  "is_active" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "priority" ,  "valueNumeric" :  80  }  }
+              ]
+            }
+          },
+          {
+            "insert" :  {
+              "tableName" :  "route_config" ,
+              "columns" :  [
+                {  "column" :  {  "name" :  "route_id" ,  "value" :  "notification-service-routes"  }  } ,
+                {  "column" :  {  "name" :  "path_pattern" ,  "value" :  "/api/notifications/**"  }  } ,
+                {  "column" :  {  "name" :  "uri" ,  "value" :  "http://localhost:8084"  }  } ,
+                {  "column" :  {  "name" :  "service_name" ,  "value" :  "notification-service"  }  } ,
+                {  "column" :  {  "name" :  "requires_auth" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "roles" ,  "value" :  "ADMIN,NOTIFICATION_SERVICE,USER"  }  } ,
+                {  "column" :  {  "name" :  "is_active" ,  "valueBoolean" :  true  }  } ,
+                {  "column" :  {  "name" :  "priority" ,  "valueNumeric" :  50  }  }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
