@@ -17,7 +17,7 @@ public class CorsConfig {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "https://scf-five.vercel.app"
+                "https://los-bo-demo.vercel.app"
         ));
         corsConfig.setAllowedMethods(List.of(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS"
